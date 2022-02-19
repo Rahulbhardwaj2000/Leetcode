@@ -34,22 +34,21 @@ class Solution
     //Function to find if there is a celebrity in the party or not.
     int celebrity(int M[][], int n)
     {
-    	Stack<Integer> stack = new Stack<>();
-    	for(int i=0;i<n;i++) stack.push(i);
+    	int start = 0, end = n-1;
     	
-    	while(stack.size() > 1){
-    	    int v1 = stack.pop();
-    	    int v2 = stack.pop();
+    	while(start < end){
+    	    int v1 = start;
+    	    int v2 = end;
     	    if(M[v1][v2] == 1){
     	        // if v1 knows v2, then v1 is not celebrity
     	        // so put v2 back as it is a potential celebrity
-    	        stack.push(v2);
+    	        start += 1;
     	    }else{
-    	        stack.push(v1);
+    	        end -= 1;
     	    }
     	}
     	
-    	int p = stack.pop();
+    	int p = start;
     	for(int i=0;i<n;i++){
     	    if(i == p) continue;
     	    if(M[p][i] == 1 || M[i][p] == 0) return -1;
