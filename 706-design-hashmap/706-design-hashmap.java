@@ -4,7 +4,7 @@ class MyHashMap {
     int size;
 
     public MyHashMap() {
-        size = 1000;
+        size = 10000;
         map = new ArrayList[size];
     }
     
