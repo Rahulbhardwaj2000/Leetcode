@@ -19,8 +19,6 @@ class Solution {
                 j -= 1;
             }
             
-            if(i<0 && j<0) return true;
-            
             if(i<0 && j>=0){
                 if(t.charAt(j) == '#') continue;
                 return false;
@@ -31,8 +29,7 @@ class Solution {
                 return false;
             }   
             
-            if(s.charAt(i) != t.charAt(j)) return false;
-            System.out.println(s.charAt(i) + ", " + t.charAt(j));
+            if(i>=0 && j>=0 && s.charAt(i) != t.charAt(j)) return false;
             
             i--;
             j--;
