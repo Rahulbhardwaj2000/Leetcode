@@ -1,42 +1,42 @@
 class Solution {
     public boolean backspaceCompare(String s, String t) {
-        Stack<Character> stack1 = new Stack<>();
-        Stack<Character> stack2 = new Stack<>();
+        int i=s.length()-1, j=t.length()-1;
+        int scount = 0, tcount = 0;
         
-        int i=0;
-        while(i<s.length()){
-            char ch = s.charAt(i);
-            if(ch != '#'){
-                stack1.push(ch);
-                i++;
-                continue;
+        while(i>=0 || j>=0){
+            
+            while(i>=0 && (s.charAt(i) == '#' || scount>0)){
+                if(s.charAt(i)=='#') scount++;
+                else scount--;
+                
+                i -= 1;
             }
-            if(!stack1.isEmpty() && ch == '#'){
-                stack1.pop();
+            
+            while(j>=0 && (t.charAt(j) == '#' || tcount>0)){
+                if(t.charAt(j)=='#') tcount++;
+                else tcount--;
+                
+                j -= 1;
             }
-            i++;
-        }
-        
-        i=0;
-        while(i<t.length()){
-            char ch = t.charAt(i);
-            if(ch != '#'){
-                stack2.push(ch);
-                i++;
-                continue;
+            
+            if(i<0 && j<0) return true;
+            
+            if(i<0 && j>=0){
+                if(t.charAt(j) == '#') continue;
+                return false;
             }
-            if(!stack2.isEmpty() &&ch == '#'){
-                stack2.pop();
-            }
-            i++;
-        }
-        
-        if(stack1.size() != stack2.size()){
-            return false;
-        }
-        
-        while(!stack1.isEmpty()){
-            if(stack1.pop() != stack2.pop()) return false;
+            
+            if(j<0 && i>=0){
+                if(s.charAt(i) == '#') continue;
+                return false;
+            }   
+            
+            if(s.charAt(i) != t.charAt(j)) return false;
+            System.out.println(s.charAt(i) + ", " + t.charAt(j));
+            
+            i--;
+            j--;
+            
         }
         
         return true;
