@@ -13,9 +13,9 @@ class Solution {
         
         StringBuilder sb = new StringBuilder();
         while(!stack.isEmpty()){
-            sb.insert(0, (char)(stack.pop() + 'a' - 'a'));
+            sb.append((char)(stack.pop() + 'a' - 'a'));
         }
         
-        return sb.toString();
+        return sb.reverse().toString();
     }
 }
