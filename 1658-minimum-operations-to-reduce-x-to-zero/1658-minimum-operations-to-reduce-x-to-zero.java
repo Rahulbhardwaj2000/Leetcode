@@ -1,7 +1,11 @@
 class Solution {
     public int minOperations(int[] nums, int x) {
         // have to find the largest subarray with that target sum
-        int target = Arrays.stream(nums).sum() - x;
+        int target = 0;
+        for(int i=0;i<nums.length;i++) target += nums[i];
+        
+        target -= x;
+        
         // target 0 means the sum of whole array is equal to x
         if(target == 0) return nums.length;
         
